@@ -12,6 +12,9 @@ import org.apache.sling.testing.mock.osgi.junit5.OsgiContext;
 public class HelloResource {
 
     private String getMessage() {
+        // Yes this is funky, the goal is to verify that
+        // the Sling OSGi mocks context works in a
+        // native executable
         final OsgiContext ctx = new OsgiContext();
         ctx.registerInjectActivateService(new MsgProviderImpl("Hello"));
         final MsgProvider svc = ctx.getService(MsgProvider.class);
