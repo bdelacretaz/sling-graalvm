@@ -6,12 +6,22 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.apache.sling.testing.mock.osgi.junit5.OsgiContext;
+
 @Path("/hello")
 public class HelloResource {
+
+    private String getMessage() {
+        final OsgiContext ctx = new OsgiContext();
+        ctx.registerInjectActivateService(new MsgProviderImpl("Hello"));
+        final MsgProvider svc = ctx.getService(MsgProvider.class);
+        return svc.getMsg();
+    }
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String hello() {
-        return "hello, at " + new Date();
+        final String msg = getMessage();
+        return msg;
     }
 }

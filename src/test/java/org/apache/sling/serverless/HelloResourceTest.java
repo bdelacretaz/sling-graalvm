@@ -15,7 +15,7 @@ public class HelloResourceTest {
           .when().get("/hello")
           .then()
              .statusCode(200)
-             .body(containsString("hello, at"));
+             .body(containsString("Hello, at"));
     }
 
 }
