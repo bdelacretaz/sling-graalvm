@@ -21,3 +21,5 @@ At which point the `/hello` path works:
 
     curl http://localhost:8080/hello
     Hello, at Mon Jul 01 17:38:00 CEST 2019
+
+To run as a Docker container see `src/main/docker/Dockerfile.native`
