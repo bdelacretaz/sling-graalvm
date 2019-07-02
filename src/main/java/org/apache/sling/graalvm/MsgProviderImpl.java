@@ -1,4 +1,4 @@
-package org.apache.sling.serverless;
+package org.apache.sling.graalvm;
 
 import org.osgi.service.component.annotations.Component;
 import java.util.Date;
