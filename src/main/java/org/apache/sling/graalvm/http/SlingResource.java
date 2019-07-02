@@ -10,6 +10,7 @@ import org.apache.sling.graalvm.osgi.SlingContext;
 import org.apache.sling.graalvm.sling.MockResource;
 import org.apache.sling.spi.resource.provider.ResourceProvider;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.engine.SlingRequestProcessor;
 
 @Path("/sling")
 @Produces(MediaType.APPLICATION_JSON)
@@ -17,6 +18,8 @@ public class SlingResource {
 
     @GET
     public Response sling() {
+        final SlingRequestProcessor p = SlingContext.get().getService(SlingRequestProcessor.class);
+        assert(p != null);
         final ResourceProvider<MockResource> rp = SlingContext.get().getService(ResourceProvider.class);
         final Resource r = rp.getResource(null, "/sling", null, null);
         return Response.ok(r).build();

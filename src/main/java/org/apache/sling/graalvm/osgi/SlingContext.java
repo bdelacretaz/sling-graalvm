@@ -1,6 +1,7 @@
 package org.apache.sling.graalvm.osgi;
 
 import org.apache.sling.graalvm.sling.MockResourceProvider;
+import org.apache.sling.graalvm.sling.SlingRequestProcessorWrapper;
 import org.apache.sling.testing.mock.osgi.junit5.OsgiContext;
 
 public class SlingContext {
@@ -18,9 +19,14 @@ public class SlingContext {
         return context;
     }
 
+    /** This is where we wire the system, like the OSGi framework
+     *  would do. As it seems hard to run that framework in a GraalVM
+     *  environment for now, we wire things statically.
+     */
     private static OsgiContext initialize() {
         final OsgiContext result = new OsgiContext();
         result.registerInjectActivateService(new MockResourceProvider());
+        result.registerInjectActivateService(new SlingRequestProcessorWrapper());
         return result;
     }
 }
