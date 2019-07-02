@@ -23,3 +23,14 @@ At which point the `/hello` path works:
     Hello, at Mon Jul 01 17:38:00 CEST 2019
 
 To run as a Docker container see `src/main/docker/Dockerfile.native`
+
+## TODO
+Running in **quarkus:dev mode fails so far** ("no SCR metadata found"), even if 
+using 
+
+    mvn clean compile bnd:bnd-process quarkus:dev
+
+not sure why.
+
+The **native startup time** went from a few msec to 5 seconds after the commit that 
+follows https://github.com/bdelacretaz/sling-graalvm/commit/4120e49ec

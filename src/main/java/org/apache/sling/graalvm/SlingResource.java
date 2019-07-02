@@ -4,11 +4,25 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import org.apache.sling.testing.mock.osgi.junit5.OsgiContext;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
 @Path("/sling")
+@Produces(MediaType.APPLICATION_JSON)
 public class SlingResource {
+
+    @RegisterForReflection
+    public static class ResponseData {
+        private final String msg;
+
+        ResponseData(String msg) {
+            this.msg = msg;
+        }
+        public String getMessage() { return msg; }
+    }
 
     private String getMessage() {
         // Yes this is funky, the goal is to verify that
@@ -21,9 +35,7 @@ public class SlingResource {
     }
 
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String hello() {
-        final String msg = getMessage();
-        return msg;
+    public Response sling() {
+        return Response.ok(new ResponseData(getMessage())).build();
     }
 }
