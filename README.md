@@ -15,7 +15,7 @@ Then build with
     
 And run with
 
-    ./target/org.apache.sling.serverless.osgimocks-1.0-SNAPSHOT-runner
+    ./target/org.apache.sling.graalvm.experiments-1.0-SNAPSHOT-runner
     
 At which point the `/hello` path works:
 
