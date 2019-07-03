@@ -1,6 +1,7 @@
 package org.apache.sling.graalvm.sling;
 
 import org.apache.sling.api.resource.AbstractResource;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceMetadata;
 import org.apache.sling.api.resource.ResourceResolver;
 
@@ -11,10 +12,14 @@ public class MockResource extends AbstractResource {
 
     private final String path;
     private final ResourceResolver resolver;
+    private final ResourceMetadata metadata;
 
     public MockResource(ResourceResolver resolver, String path) {
         this.resolver = resolver;
         this.path = path;
+        this.metadata = new ResourceMetadata();
+        metadata.put(ResourceMetadata.RESOLUTION_PATH, path);
+        metadata.put(ResourceMetadata.RESOLUTION_PATH_INFO, path);
     }
 
     @Override
@@ -34,11 +39,16 @@ public class MockResource extends AbstractResource {
 
     @Override
     public ResourceMetadata getResourceMetadata() {
-        return null;
+        return metadata;
     }
 
     @Override
     public ResourceResolver getResourceResolver() {
         return resolver;
+    }
+
+    @Override
+    public Resource getParent() {
+        return null;
     }
 }

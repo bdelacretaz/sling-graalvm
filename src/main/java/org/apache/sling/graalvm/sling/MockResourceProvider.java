@@ -16,7 +16,7 @@ public class MockResourceProvider extends ResourceProvider<MockResource> {
     @Override
     public Resource getResource(ResolveContext<MockResource> ctx, String path, ResourceContext resourceContext,
             Resource parent) {
-        return path.contains(MAGIC) ? new MockResource(new MockResourceResolver(), path) : null;
+        return path.contains(MAGIC) ? new MockResource(null, path) : null;
     }
 
     @Override

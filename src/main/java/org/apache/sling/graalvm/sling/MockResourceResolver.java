@@ -9,8 +9,17 @@ import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.PersistenceException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.spi.resource.provider.ResourceProvider;
+import org.osgi.service.component.annotations.Component;
 
+@Component(service=ResourceResolver.class)
 public class MockResourceResolver implements ResourceResolver {
+
+    private final ResourceProvider<?> provider;
+
+    public MockResourceResolver(MockResourceProvider provider) {
+        this.provider = provider;
+    }
 
     @Override
     public <AdapterType> AdapterType adaptTo(Class<AdapterType> type) {
@@ -19,7 +28,7 @@ public class MockResourceResolver implements ResourceResolver {
 
     @Override
     public Resource resolve(HttpServletRequest request, String absPath) {
-        return null;
+        return provider.getResource(null, absPath, null, null);
     }
 
     @Override

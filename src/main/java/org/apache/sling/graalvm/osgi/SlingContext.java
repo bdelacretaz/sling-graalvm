@@ -1,7 +1,8 @@
 package org.apache.sling.graalvm.osgi;
 
+import org.apache.sling.engine.impl.SlingRequestProcessorWrapper;
 import org.apache.sling.graalvm.sling.MockResourceProvider;
-import org.apache.sling.graalvm.sling.SlingRequestProcessorWrapper;
+import org.apache.sling.graalvm.sling.MockResourceResolver;
 import org.apache.sling.testing.mock.osgi.junit5.OsgiContext;
 
 public class SlingContext {
@@ -25,7 +26,9 @@ public class SlingContext {
      */
     private static OsgiContext initialize() {
         final OsgiContext result = new OsgiContext();
-        result.registerInjectActivateService(new MockResourceProvider());
+        final MockResourceProvider mrp = new MockResourceProvider();
+        result.registerInjectActivateService(new MockResourceResolver(mrp));
+        result.registerInjectActivateService(mrp);
         result.registerInjectActivateService(new SlingRequestProcessorWrapper());
         return result;
     }
