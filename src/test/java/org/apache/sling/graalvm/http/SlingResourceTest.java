@@ -23,7 +23,7 @@ public class SlingResourceTest {
           .then()
              .statusCode(200)
              .contentType(MediaType.APPLICATION_JSON)
-             .body("path", equalTo(path))
+             .body("path", equalTo(prefix + path))
              .body("resourceType", equalTo(resourceType));
     }
 

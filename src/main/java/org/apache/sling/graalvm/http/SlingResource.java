@@ -18,6 +18,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.apache.sling.graalvm.osgi.SlingContext;
+import org.apache.sling.graalvm.sling.MockServletResolver;
 import org.apache.sling.spi.resource.provider.ResourceProvider;
 import org.mockito.Mockito;
 import org.apache.sling.api.resource.Resource;
@@ -48,9 +49,7 @@ public class SlingResource {
             throw new RuntimeException(e);
         }
 
-        System.err.println("*** SlingRequestProcessor output *** : " + sw.toString());
-        final ResourceProvider<?> rp = SlingContext.get().getService(ResourceProvider.class);
-        final Resource r = rp.getResource(null, resourcePath, null, null);
+        final Resource r = (Resource)request.getAttribute(MockServletResolver.RESOURCE_ATTR);
         return Response.ok(r).build();
     }
 }
