@@ -13,7 +13,7 @@ import javax.ws.rs.core.MediaType;
 public class SlingResourceTest {
 
     @Test
-    public void testHelloEndpoint() {
+    public void testSlingResourceEndpoint() {
         final String prefix = "/sling/";
         final String path = "chouc/route";
         final String resourceType = "mock/resource";
