@@ -11,7 +11,7 @@ import org.osgi.service.component.annotations.Component;
 @Component(service=ResourceProvider.class)
 public class MockResourceProvider extends ResourceProvider<MockResource> {
 
-    private static final String MAGIC = "sling";
+    private static final String MAGIC = "chouc";
 
     @Override
     public Resource getResource(ResolveContext<MockResource> ctx, String path, ResourceContext resourceContext,

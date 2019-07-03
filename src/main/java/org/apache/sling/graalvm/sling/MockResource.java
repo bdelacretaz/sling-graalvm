@@ -24,7 +24,7 @@ public class MockResource extends AbstractResource {
 
     @Override
     public String getResourceType() {
-        return "FOO/bar";
+        return "mock/resource";
     }
 
     @Override
