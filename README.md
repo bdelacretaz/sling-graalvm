@@ -30,7 +30,5 @@ using
 
     mvn clean compile bnd:bnd-process quarkus:dev
 
-not sure why.
-
-The **native startup time** went from a few msec to 5 seconds after the commit that 
-follows https://github.com/bdelacretaz/sling-graalvm/commit/4120e49ec
+The **native startup time** is about 5 seconds on my box, but just a few
+milliseconds when runnning in a Docker image.
