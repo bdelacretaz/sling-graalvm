@@ -1,11 +1,8 @@
 package org.apache.sling.graalvm.http;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -16,7 +13,6 @@ import javax.ws.rs.core.Response;
 
 import org.apache.sling.graalvm.osgi.SlingContext;
 import org.apache.sling.graalvm.sling.MockServletResolver;
-import org.apache.sling.spi.resource.provider.ResourceProvider;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.commons.testing.sling.MockSlingHttpServletResponse;
